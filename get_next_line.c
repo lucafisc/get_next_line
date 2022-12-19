@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:59:32 by lde-ross          #+#    #+#             */
-/*   Updated: 2022/12/16 21:17:02 by lde-ross         ###   ########.fr       */
+/*   Updated: 2022/12/19 10:40:56 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,28 @@ char *get_next_line(int fd)
 		if (pt[0] == '\n')
 		{
 			buff[i] = pt[0];
+			buff[++i] = '\0';
 			str = buff;
 			return (str);
 		}
 		buff[i] = pt[0];
 		i++;
 	}
-	close(fd);
+	buff[++i] = '\0';
 	str = buff;
 	return (str);
-
 }
 
-// int	main(void)
-// {
-// 	int	fd;
-// 	int	i;
+int	main(void)
+{
+	int	fd;
 	
 
-// 	fd = open("files/41_no_nl", O_RDONLY);
-// 	if (fd == -1)
-// 			write(2, "error opening file", 18);
+	fd = open("files/41_no_nl", O_RDONLY);
+	if (fd == -1)
+			write(2, "error opening file", 18);
 			
-// 		printf("%s", get_next_line(fd));
-	
-	
-// }
+		get_next_line(fd);
+		printf("%s", get_next_line(fd));
+		printf("%s", get_next_line(fd));
+}
