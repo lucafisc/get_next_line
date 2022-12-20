@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:59:32 by lde-ross          #+#    #+#             */
-/*   Updated: 2022/12/20 11:02:29 by lde-ross         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:27:23 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	get_n_position(char *str)
 {
 	int	i;
 	i = 0;
-	while (str[i] != '\n')
+	while (str[i] != '\n' && str[i])
 		i++;
 	return (i);
 }
@@ -36,6 +36,7 @@ char	*get_til_n(char *src)
 		str[i] = src[i];
 		i++;
 	}
+	str[i] = '\0';
 	return (str);
 }
 
@@ -67,41 +68,51 @@ char *cleanup(char *src)
 
 char	*get_next_line(int fd)
 {
-	char	buff[BUFFER_SIZE + 1];
+	char		buff[BUFFER_SIZE + 1];
 	static char	*stash;
 	char		*line;
-	int r;
+	int			r;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!stash)
 		stash = (NULL);
-	while (1)
+	r = 1;
+	while ((r = read(fd, buff, BUFFER_SIZE)) > 0)
 	{
-		r = read(fd, buff, BUFFER_SIZE);
-		if (r <= 0 && !stash[0])
-			return (NULL);
 		buff[r] = '\0';
 		if (!stash)
 			stash = ft_strdup(buff);
 		else
 			stash = ft_strjoin(stash, buff);
+		// printf("\nthis is stash:%s and this is r: %d\n", stash, r);
 		if (ft_strchr(stash, '\n'))
-		{
-			line = get_til_n(stash);
-			stash = cleanup(stash);
-			return (line);
-		}
+			break;
 	}
-	return (NULL);
+	// printf("\n------end of loop------ r:%d\n", r);
+	if (r < 0 || (r == 0 && !stash))
+		return (NULL);
+	else
+	{
+		// printf("this is stash before cleaning: %s -------\n", stash);
+		line = get_til_n(stash);
+		// printf("this is line before returning: %s -------\n", line);
+		stash = cleanup(stash);
+		return (line);
+	}
+	
+		return (NULL);
+	
 }
 
 int	main(void)
 {
 	int	fd;
-	fd = open("files/41_no_nl", O_RDONLY);
+	fd = open("files/multiple_nlx5", O_RDONLY);
 	if (fd == -1)
 			write(2, "error opening file", 18);
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
