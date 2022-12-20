@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:59:58 by lde-ross          #+#    #+#             */
-/*   Updated: 2022/12/20 10:12:18 by lde-ross         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:52:30 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
-
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}	t_list;
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);
