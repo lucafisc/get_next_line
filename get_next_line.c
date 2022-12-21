@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:59:32 by lde-ross          #+#    #+#             */
-/*   Updated: 2022/12/20 15:49:40 by lde-ross         ###   ########.fr       */
+/*   Updated: 2022/12/21 14:33:41 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	*trim_after_newline(char *src)
 	int		len;
 	char	*new_str;
 	int		i;
+
 	len = get_newline_index(src);
 	new_str = malloc(sizeof(char) * (len + 1));
 	if (!new_str)
@@ -90,7 +91,6 @@ char	*get_next_line(int fd)
 		stash = trim_before_newline(stash);
 		return (line);
 	}
-		return (NULL);
 }
 
 int	main(void)
