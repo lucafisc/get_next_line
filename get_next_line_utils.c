@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 16:13:26 by lde-ross          #+#    #+#             */
-/*   Updated: 2022/12/21 14:34:38 by lde-ross         ###   ########.fr       */
+/*   Updated: 2022/12/26 16:31:06 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_strchr(const char *s, int c)
 	return (0);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(const char *s1, char const *s2)
 {
 	int		len;
 	char	*pt;
@@ -69,9 +69,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 char	*ft_strdup(const char *s1)
 {
-	int len;
-	char *pt;
-	int i;
+	int		len;
+	char	*pt;
+	int		i;
 
 	len = ft_strlen(s1) + 1;
 	pt = malloc(sizeof(char) * len);
