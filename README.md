@@ -88,9 +88,10 @@ int main(void)
 	int		fd2;
 	char	*pt;
 
-	// Open first .txt file and protect from errors
+	// Open .txt files and protect from errors
 	fd1 = open("./first_file.txt", O_RDONLY);
-	if (fd1 == -1)
+	fd2 = open("./second_file.txt", O_RDONLY);
+	if (fd1 == -1 || fd2 == -1)
 	{
 		write(2, "error opening file", 18);
 		return (0);
@@ -100,14 +101,6 @@ int main(void)
 	pt = get_next_line(fd1);
 	printf("%s\n", pt);
 	free(pt);
-
-	// Open second .txt file and protect from errors
-	fd2 = open("./second_file.txt", O_RDONLY);
-	if (fd2 == -1)
-	{
-		write(2, "error opening file", 18);
-		return (0);
-	}
 
 	// Get first line from the second file
 	pt = get_next_line(fd2);
