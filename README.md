@@ -35,7 +35,7 @@ The function can be used in any program written in `C`. You can create a `main.c
 Create a `main.c` file:
 
 ```c
-// include the header
+// Include the header
 #include "get_next_line.h"
 
 int	main(void)
@@ -44,7 +44,7 @@ int	main(void)
 	int		i;
 	char	*pt;
 
-	// open .txt file and protect from errors
+	// Open .txt file and protect from errors
 	fd = open("./text_file.txt", O_RDONLY);
 	if (fd == -1)
 	{
@@ -52,7 +52,7 @@ int	main(void)
 		return (0);
 	}
 
-	// define number of lines to be read
+	// Define number of lines to be read
 	i = 5;
 	while (i--)
 	{
@@ -88,7 +88,7 @@ int main(void)
 	int		fd2;
 	char	*pt;
 
-	// open first .txt file and protect from errors
+	// Open first .txt file and protect from errors
 	fd1 = open("./first_file.txt", O_RDONLY);
 	if (fd1 == -1)
 	{
@@ -96,12 +96,12 @@ int main(void)
 		return (0);
 	}
 
-	// get first line from the first file
+	// Get first line from the first file
 	pt = get_next_line(fd1);
 	printf("%s\n", pt);
 	free(pt);
 
-	// open second .txt file and protect from errors
+	// Open second .txt file and protect from errors
 	fd2 = open("./second_file.txt", O_RDONLY);
 	if (fd2 == -1)
 	{
@@ -109,7 +109,7 @@ int main(void)
 		return (0);
 	}
 
-	// get first line from the second file
+	// Get first line from the second file
 	pt = get_next_line(fd2);
 	printf("%s\n", pt);
 	free(pt);
