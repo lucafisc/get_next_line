@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	get_newline_index(char *str)
 {
@@ -76,46 +76,46 @@ char	*trim_before_newline(char *src)
 	return (new_str);
 }
 
-char	*read_file(char *stash, int fd)
+char	*read_file(char **stash, int fd)
 {
 	int		i;
-	char	*buff;
+	char	*buff[FOPEN_MAX];
 
-	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buff)
+	buff[fd] = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buff[fd])
 		return (NULL);
 	i = 1;
 	while (i != 0)
 	{
-		i = read(fd, buff, BUFFER_SIZE);
+		i = read(fd, buff[fd], BUFFER_SIZE);
 		if (i < 0)
 		{
-			free(stash);
-			free(buff);
+			free(buff[fd]);
+			free(stash[fd]);
 			return (NULL);
 		}
-		buff[i] = '\0';
-		stash = ft_joinnfree(stash, buff);
-		if (ft_strchr(stash))
+		buff[fd][i] = '\0';
+		stash[fd] = ft_joinnfree(stash[fd], buff[fd]);
+		if (ft_strchr(stash[fd]))
 			break ;
 	}
-	free(buff);
-	return (stash);
+	free(buff[fd]);
+	return (stash[fd]);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*stash;
+	static char	*stash[FOPEN_MAX];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FOPEN_MAX)
 		return (NULL);
-	if (!ft_strchr(stash))
-		stash = read_file(stash, fd);
-	if (!stash)
+	if (!ft_strchr(stash[fd]))
+		stash[fd] = read_file(stash, fd);
+	if (!stash[fd])
 		return (NULL);
-	line = trim_after_newline(stash);
-	stash = trim_before_newline(stash);
+	line = trim_after_newline(stash[fd]);
+	stash[fd] = trim_before_newline(stash[fd]);
 	return (line);
 }
 
