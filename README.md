@@ -10,6 +10,8 @@ It uses static variables and the following external functions: `read` `malloc` `
 
 Functions ending with `_bonus.c` can be used to read simultaneously from multiple file descriptors.
 
+[![lde-ross's 42 get_next_line Score](https://badge42.vercel.app/api/v2/clcrkbbp700300fkxp8nykj3n/project/2916842)](https://github.com/JaeSeoKim/badge42)
+
 - [How to use](#how-to-use)
 - [How to test](#how-to-test)
 - [Read from multiple files](#read-from-multiple-files)
