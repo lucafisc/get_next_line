@@ -6,7 +6,7 @@
 
 This function returns one line at a time from a given file descriptor. It can be compiled with any `BUFFER_SIZE`. 
 
-It uses static variables and the following external functions: `read` `malloc` `free`
+It uses static variables and the following external functions: [`read`](https://man7.org/linux/man-pages/man2/read.2.html) [`malloc`](https://man7.org/linux/man-pages/man3/malloc.3.html) [`free`](https://man7.org/linux/man-pages/man1/free.1.html)
 
 Functions ending with `_bonus.c` can be used to read simultaneously from multiple file descriptors.
 
